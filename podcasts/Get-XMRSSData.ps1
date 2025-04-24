@@ -409,6 +409,12 @@ function Get-XMRssData {
 
                     $pubDate = Get-Date $item.pubDate -format "dddd, dd MMMM yyyy"
                     $minutes, $seconds = $item.duration -split ':'
+                    if ( $minutes -eq "" ) {
+                        $minutes = 0
+                    }
+                    if ( $seconds -eq "" ) {
+                        $seconds = 0
+                    }
                     $duration = (New-TimeSpan -Minutes $minutes -Seconds $seconds).ToString()
 
                     $properties = [ordered]@{
